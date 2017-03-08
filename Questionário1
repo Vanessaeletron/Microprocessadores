@@ -1,4 +1,5 @@
 1. O que são sistemas embarcados?
+É um computador com um propósito específico, adaptado para a finalidade em que será implementado. 
 
 2. O que são sistemas microprocessados?
 3. Apresente aplicações de sistemas embarcados?
@@ -7,3 +8,6 @@ Para eletrodomésticos;
 Para automação industrial.
 5. Cite arquiteturas possíveis e as diferenças entre elas.
 Por quê usamos o MSP430 na disciplina, ao invés de outro microcontrolador? 
+
+Referências
+https://www.embarcados.com.br/sistema-embarcado/
