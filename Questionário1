@@ -18,10 +18,10 @@ Controle de temperatura, os CNC/PLC (Computador Lógico Programável) que contro
 mais robusto e que opera em condições mas críticas...
 
 5. Cite arquiteturas possíveis e as diferenças entre elas.
-
+Arquitetura Von-Neumann: as intruções e os dados ficam juntos na memória.
+Arquitetura Harvard: dados e programas são armazenados em meios distintos.
 
 6. Por quê usamos o MSP430 na disciplina, ao invés de outro microcontrolador? 
 Possui baixo custo, ideal para projetos pelo seu baixo consumo de bateria,
 
-Referências
-https://www.embarcados.com.br/sistema-embarcado/
+
