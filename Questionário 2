@@ -53,7 +53,7 @@ como ficam este byte e os seguintes, considerando que a memória é:
 	0x0203: 0xCD
 
 Q6. Sabendo que o processador do MSP430 tem registradores de 16 bits, como ele soma duas variáveis de 32 bits?
-Uma palavra de 32 bits é separada em dois registradores de 16 bits, vamos chamar de palavra A. A outra palavra também é separada e armazenada
-em 2 registradores de 16 bits, vamos chamar de B. Os registrados menos significativos de A e de B são somados e se existir carry ele será
-armazenado para então somar os registradores mais significativos juntamente com a informação do carry armazenada. Logo após juntam-se esses
-resultados.
+Uma palavra de 32 bits é separada em dois registradores de 16 bits, vamos chamar de palavra A. A outra palavra também é separada e 
+armazenada em 2 registradores de 16 bits, vamos chamar de B. Os registrados com os bits menos significativos de A e de B são somados e 
+se existir carry ele será armazenado. Feito isso será somado os registradores com bits mais significativos levando em consideraçã a 
+informação do carry armazenada na soma. Logo após juntam-se esses resultados.
