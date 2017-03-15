@@ -27,9 +27,16 @@ Q3. Considere o código abaixo, de 12 linhas:
 
 Para este código, responda:
 	(a) A variável 'i' é armazenada na memória RAM ou ROM? Por quê?
+Na memória RAM, pois ela fica temporariamente. Quando reinicia o programa tem-se que armazenar o valor de i novamente.
+
 	(b) O programa compilado a partir deste código é armazenado na memória RAM ou ROM? Por quê?
+Na memório ROM, pois após salvo ele não será apagado ao desligar o computador.
 
 Q4. Quais são as diferenças, vantagens e desvantagens das arquiteturas Harvard e Von Neumann?
+A arquitetura Havard os endereços e os dados a serem armazenados na memória são compilados ao mesmo tempo, existem componentes distintos
+para isso. Logo é mais rápido o processamento, porém é mais complexo seus componentes internos.
+Na arquitetura Von Neumann é processada uma informação por vez, no mesmo barramento.Logo o processo é mais lento, mas a arquitetura é 
+mais simples.
 
 Q5. Considere a variável inteira 'i', armazenando o valor 0x8051ABCD. Se 'i' é armazenada na memória a partir do endereço 0x0200, 
 como ficam este byte e os seguintes, considerando que a memória é:
