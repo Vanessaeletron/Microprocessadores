@@ -13,14 +13,17 @@ Lembre-se que um byte tem 8 bits, ou seja, é possível representar 256 números
   
 	(c) Somente zerar o terceiro bit menos significativo de 'a'.
   char b =1111 1011;
-  a&=b;
+  a&=b
+ 
+  a&= 0xFB;
+  0x seleciona o endereço e FB é 1111 1011
   
 	(d) Somente zerar o terceiro e o quarto bits menos significativo de 'a'.
-  char b= 1111 0011;
-  a&=b;
+
+  a&= 0xF3;
   
 	(e) Somente inverter o bit mais significativo de 'a'. 
-  a!=
+  a!= 0x
   
 	(f) Inverter o nibble mais significativo de 'a', e setar o nibble menos significativo de 'a'. 
 
