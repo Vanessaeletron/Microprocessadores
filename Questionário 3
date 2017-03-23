@@ -6,25 +6,28 @@ Lembre-se que um byte tem 8 bits, ou seja, é possível representar 256 números
 
 	(a) Somente setar o bit menos significativo de 'a'.
   variável tipo char tem 8 bits
-  a|= OX01;
+  a|= 0X01; //que é o mesmo de a|=1 ou 0b00000001
   
 	(b) Somente setar dois bits de 'a': o menos significativo e o segundo menos significativo.
-  a|= OC03;
+  a|= 0X03;
   
 	(c) Somente zerar o terceiro bit menos significativo de 'a'.
-  a|= OXFB
+  a|= 0XFB
  
   0x seleciona o endereço e FB é 1111 1011
   
 	(d) Somente zerar o terceiro e o quarto bits menos significativo de 'a'.
-  a|= OXF3;
+  a|= 0XF3;
   
 	(e) Somente inverter o bit mais significativo de 'a'. 
- a^= OX80
+ a^= 0X80
   
 	(f) Inverter o nibble mais significativo de 'a', e setar o nibble menos significativo de 'a'. 
-a^= OX08
+ a^= 0XF0
+ a|= 0X0F
 
+OBS: nibble 4 bits
+setar colocar 1
 
 2. Considerando a placa Launchpad do MSP430, escreva o código em C para piscar os dois LEDs ininterruptamente.
 
@@ -48,7 +51,7 @@ for (i=0;i<10000;i++);        //gasto decremental de tempo por software
 
 #include <msp430g2553.h>
 
-#define BTN BIT2
+#define BTN BIT3
 #define LED1 BIT0
 #define LED2 BIT6
 
