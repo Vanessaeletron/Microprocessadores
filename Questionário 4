@@ -41,10 +41,25 @@ clr.w, dec.w, decd.w, inc.w e incd.w.
 	(e) j -= 2;
 	decd.w R8;
 
-3. Traduza as seguintes linhas em C para a linguagem assembly do MSP430. Utilize somente as seguintes instruções: mov.w, add.w, sub.w, clr.w, dec.w, decd.w, inc.w e incd.w.
+3. Traduza as seguintes linhas em C para a linguagem assembly do MSP430. Utilize somente as seguintes instruções: mov.w, add.w, sub.w, 
+clr.w, dec.w, decd.w, inc.w e incd.w.
+
 	(a) f *= 2;
+	mov.w R4, R11;
+	add.w R4,R11;  //R11=R4+R4
+	mov.w R11, R4
+	
 	(b) g *= 3;
+	
 	(c) h *= 4;
+	
 	(d) A[2] = A[1] + A[0];
+	mov.w 0(R9), R11;   // armazena A[0] no R9
+	mov.w 2(R9), R12;
+	add.w R11, R12;
+	mov.w R12, 4(R9);
+	
 	(e) A[3] = 2*f - 4*h;
+	
+	
 	(f) A[3] = 2*(f - 2*h);
