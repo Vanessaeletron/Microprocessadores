@@ -23,6 +23,19 @@ O protótipo da função é:
 (b) Escreva a sub-rotina equivalente na linguagem Assembly do MSP430. A variável 'S' é fornecida pelo registrador R15, e a raiz quadrada
 de 'S' (ou seja, a variável 'x') é fornecida pelo registrador R15 também.
 
+function Raiz_Quadrada:
+mov.w #1, R15
+mov.w #1, R14
+
+DIVISAO:
+mov.w R15, R12        Resultado da divisão armazenado em R12
+sub.w R, R
+
+add.w R12, R15
+rla.w R15
+
+
+
 2. (a) Escreva uma função em C que calcule 'x' elevado à 'N'-ésima potência, seguindo o seguinte protótipo: 
 
 	int Potencia(int x, int N);
