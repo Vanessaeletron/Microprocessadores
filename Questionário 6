@@ -12,12 +12,12 @@ O protótipo da função é:
 	unsigned int Raiz_Quadrada(unsigned int S)
   {
   
-  float x(n)=1.0;
+  float x=1;
   
   for(int n=1, n<5, n++){
-  float x(n+1) = (x(n) + S/x(n))/2;
+  float x = (x + S/x)/2;
   }
-  return x(6)
+  return x
   }
 
 (b) Escreva a sub-rotina equivalente na linguagem Assembly do MSP430. A variável 'S' é fornecida pelo registrador R15, e a raiz quadrada
