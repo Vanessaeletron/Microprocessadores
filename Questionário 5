@@ -17,8 +17,9 @@ bis R11, R5;
 
 	(b) Somente setar dois bits de R6: o menos significativo e o segundo menos significativo.
 mov.w #0001h, R4;
-bis R4, R6;
-
+bis R4, R6;          ;bis-> seta bit a bit 
+                     ;bic -> zera bit a bit, uma opção melhor que AND porque se eu quero zerar as opções0 e 7 com AND: 10111110
+                            ; com bic 010000010
 	(c) Somente zerar o terceiro bit menos significativo de R7.
 mov.w #0008h, R4;
 and.w R4, R7;
