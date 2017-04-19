@@ -47,6 +47,25 @@ for (i=0;i<10000;i++);        //gasto decremental de tempo por software
 
 }
 
+
+#include <msp430.h>  
+ 
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	    // Parar watchdog timer
+ 
+    P1DIR = 0x40;		    // Define porta como entrada ou saída
+                                    // 0 para entrada, 1 para saída
+ 
+    P1OUT = 0x00;			        // Inicia em LOW
+ 
+    while(1){                                //loop infinito verdadeiro
+    	P1OUT = 0x40;			    // Acende o led
+    	__delay_cycles(1000000);	    // Aprox 1 segundo
+    	P1OUT = 0x00;			   // Desliga o led
+    	__delay_cycles(1000000);	    // Aprox 1 segundo
+    }
+}
+
 3. Considerando a placa Launchpad do MSP430, escreva o código em C para piscar duas vezes os dois LEDs sempre que o usuário pressionar o botão.
 
 #include <msp430g2553.h>
@@ -85,6 +104,25 @@ P1OUT ^= 0x01;                //alterna a saída usando XOR
 while(0);                     //nunca entra em loop
   }
 
+}
+
+#include <msp430.h> 
+ 
+ 
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Parar watchdog timer
+	
+	P1DIR = BIT6;	// Definição de entradas e saídas
+ 
+	P1REN = BIT3;	// Habilita o resistor de pull-up
+	P1OUT = BIT3;	// Define o valor inicial do port
+ 
+	while(1){
+		if((P1IN & BIT3) == 0x00){	// Efetuar a leitura do botão
+			P1OUT |= BIT6;	// Liga o led
+		} else
+			P1OUT &= ~BIT6; // Led desligado
+	}
 }
 
 5. Reescreva o código da questão 2 usando a função da questão 4.
