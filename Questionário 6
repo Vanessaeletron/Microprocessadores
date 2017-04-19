@@ -65,11 +65,11 @@ respectivamente, e a saída deverá ser fornecida no registrador R15.
 
 RESPOSTA:
 
-Potencia:
+Inicio:
 	cmp #1, R14               			; cmp:  N=1 se 1<R14 (R14-1<0) e N=0 se (R14>=1)
 	jeq FIM       ; se R14=1 vai para label:FIM     ;       Z=1 se R14=1 (R14-1=0) e Z=0 se (R14 é diferente de 1)
 	cmp #0, R14                     	        ;       C=1 se R14-1 há carry e C=0 caso contrário
-	jeq COND                                        ;       V=1 se R14-1 há overflow e V=0 caso contrário
+	jeq PotenciaZero                                ;       V=1 se R14-1 há overflow e V=0 caso contrário
 	mov.w R15, R12 ; move R15 pra R12
 	mov.w R15, R11 ; move R15 pra R11
 	clr.w R15      ; limpa o R15
@@ -85,21 +85,70 @@ Multiplicacao:
 	cmp #1, R14
 	mov.w R15, R12
 	jeq FIM
-	clr.w R15
-	jmp Multiplicacao
+	clr.w R15          ; Tem que limpar o R15 no final, pois usamos como variável temporária e depois pode está sendo usada em outra
+	jmp Multiplicacao  ; parte do código.
 
-COND:
+PotenciaZero:
 	mov.w #1, R15
 
 FIM:
 	ret                                               ; Se é uma função deve retornar onde foi chamada?!
 	
 
-3. Escreva uma sub-rotina na linguagem Assembly do MSP430 que calcula a divisão de 'a' por 'b', onde 'a', 'b' e o valor de saída são inteiros de 16 bits. 'a' e 'b' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida através do registrador R15.
+3. Escreva uma sub-rotina na linguagem Assembly do MSP430 que calcula a divisão de 'a' por 'b', onde 'a', 'b' e o valor de saída são 
+inteiros de 16 bits. 'a' e 'b' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida 
+através do registrador R15.
 
-4. Escreva uma sub-rotina na linguagem Assembly do MSP430 que calcula o resto da divisão de 'a' por 'b', onde 'a', 'b' e o valor de saída são inteiros de 16 bits. 'a' e 'b' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida através do registrador R15.
+RESPOSTA:
 
-5. (a) Escreva uma função em C que indica a primalidade de uma variável inteira sem sinal, retornando o valor 1 se o número for primo, e 0, caso contrário. Siga o seguinte protótipo:
+	clr.w R12
+	
+Inicio:
+	mov.w R14, R11            ; R11<-R14
+	sub.w R14, R15            ; R15=R15-R14
+	add.w #1, R12             ; R12=R12+1
+	
+Compara:
+	dec.w R11
+	cmp R11, R15
+	jeq Fim
+	cmp #0, R11
+	jeq Inicio
+	jmp Compara
+	
+Fim:
+	mov.w R12, R15
+	ret
+	
+4. Escreva uma sub-rotina na linguagem Assembly do MSP430 que calcula o resto da divisão de 'a' por 'b', onde 'a', 'b' e o valor de saída são inteiros de 16 bits. 
+'a' e 'b' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida através do registrador R15.
+
+RESPOSTA:
+
+clr.w R12
+
+Inicio:
+	mov.w R14, R11
+	sub.w R14, R15
+	add.w #1, R12
+	
+Compara:
+	dec.w R11
+	cmp R11, R15
+	jeq Fim
+	cmp #0, R11
+	jeq Inicio
+	jmp Compara
+	
+Fim:
+	mov.w R12, R15
+	
+Resto:
+mov.w R11, R15
+ret
+
+5. (a) Escreva uma função em C que indica a primalidade de uma variável inteira sem sinal, retornando o valor 1 se o número for primo, e
+0, caso contrário. Siga o seguinte protótipo:
 
 	int Primalidade(unsigned int x);
 
