@@ -101,4 +101,18 @@ mov.w #0, R7
 
 5. "Traduza" o seguinte trecho de código em C para o assembly do MSP430:
 
-	for(i=99; i>=0; i--) A[i] = i*2;
+	for(i=99; i>=0; i--) 
+	A[i] = i*2;
+	
+INICIO:
+mov.w R7, R12    ; joga o A pro R12 pra não modificar R7 é o i
+mov.w #100, R13
+rla R12
+add.w R9, R12   ;  R9 = A, R12 = A + 2*i = &A[i] 
+comp R12, R13
+jne EXIT
+add.w R12,R12
+mov.w R12,R9
+dec.w R7
+jmp INICIO
+EXIT
