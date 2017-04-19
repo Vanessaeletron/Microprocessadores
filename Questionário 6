@@ -12,35 +12,88 @@ O protótipo da função é:
 	unsigned int Raiz_Quadrada(unsigned int S)
   {
   
-  float x=1;
+RESPOSTA:
   
-  for(int n=1, n<5, n++){
-  float x = (x + S/x)/2;
-  }
-  return x
-  }
+ int Raizquadrada (int S){
+	float x = 1;
+	for(int n = 1; n<5; n++){             //número de iterações de x
+	x = (x + S/x)/2; 
+}
+return x; 
+}
+
 
 (b) Escreva a sub-rotina equivalente na linguagem Assembly do MSP430. A variável 'S' é fornecida pelo registrador R15, e a raiz quadrada
 de 'S' (ou seja, a variável 'x') é fornecida pelo registrador R15 também.
 
-function Raiz_Quadrada:
-mov.w #1, R15
-mov.w #1, R14
+RESPOSTA:
 
-DIVISAO:
-mov.w R15, R12        Resultado da divisão armazenado em R12
-sub.w R, R
+;R15 recebe S
+;Lembrando que para passar parâmetros a subrotina, usasse os registradores R15, R14, R13 e R12 (nessa ordem).
 
-add.w R12, R15
-rla.w R15
-
-
+Raizquadrada:                                             
+	mov.w #1, R13; 
+	mov.w #1, R14;                                
+	LOOP:                                                          
+	; divisao por x
+	
+DIVISAO:	
+	mov.w R15, R12; 
+	sub.w R1, 
+	add.w R12, R15; 
+	rla.w R15; 
+	inc.w R14; 
+	call LOOP; 
 
 2. (a) Escreva uma função em C que calcule 'x' elevado à 'N'-ésima potência, seguindo o seguinte protótipo: 
 
 	int Potencia(int x, int N);
 
-(b) Escreva a sub-rotina equivalente na linguagem Assembly do MSP430. 'x' e 'n' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida no registrador R15.
+RESPOSTA:
+
+int Potencia(int x, int N)      /no assembly x vai pra R15 e N pra R14
+	{
+	    int y;
+		if(N==1) return x;
+		if(N==0) return 1;
+		y = x*Potencia(x, --N);
+		return y;
+	}
+
+(b) Escreva a sub-rotina equivalente na linguagem Assembly do MSP430. 'x' e 'n' são fornecidos através dos registradores R15 e R14, 
+respectivamente, e a saída deverá ser fornecida no registrador R15.
+
+RESPOSTA:
+
+Potencia:
+	cmp #1, R14               			; cmp:  N=1 se 1<R14 (R14-1<0) e N=0 se (R14>=1)
+	jeq FIM       ; se R14=1 vai para label:FIM     ;       Z=1 se R14=1 (R14-1=0) e Z=0 se (R14 é diferente de 1)
+	cmp #0, R14                     	        ;       C=1 se R14-1 há carry e C=0 caso contrário
+	jeq COND                                        ;       V=1 se R14-1 há overflow e V=0 caso contrário
+	mov.w R15, R12 ; move R15 pra R12
+	mov.w R15, R11 ; move R15 pra R11
+	clr.w R15      ; limpa o R15
+	mov.w R12, R13 ; move R12 pra R13
+
+Multiplicacao:
+	add.w R12, R15 ; R15= R15+R12
+	cmp.w #1, R13
+	dec.w R13
+	jne Multiplicacao
+	mov.w R11, R13
+	dec.w R14
+	cmp #1, R14
+	mov.w R15, R12
+	jeq FIM
+	clr.w R15
+	jmp Multiplicacao
+
+COND:
+	mov.w #1, R15
+
+FIM:
+	ret                                               ; Se é uma função deve retornar onde foi chamada?!
+	
 
 3. Escreva uma sub-rotina na linguagem Assembly do MSP430 que calcula a divisão de 'a' por 'b', onde 'a', 'b' e o valor de saída são inteiros de 16 bits. 'a' e 'b' são fornecidos através dos registradores R15 e R14, respectivamente, e a saída deverá ser fornecida através do registrador R15.
 
