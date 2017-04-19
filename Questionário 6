@@ -10,11 +10,10 @@ adequadamente os registradores R4 a R11. As instruções da linguagem Assembly d
 O protótipo da função é:
 
 	unsigned int Raiz_Quadrada(unsigned int S)
-  {
   
 RESPOSTA:
   
- int Raizquadrada (int S){
+ unsigned int Raiz_Quadrada(unsigned int S){
 	float x = 1;
 	for(int n = 1; n<5; n++){             //número de iterações de x
 	x = (x + S/x)/2; 
