@@ -46,8 +46,48 @@ int main(void)
 
 3. Escreva um código em C que acende os LEDs quando o botão é pressionado.
 
+#include "io430.h"
+  
+  int main( void )
+  {
+    int i;
+    WDTCTL = WDTPW + WDTHOLD;
+    P1DIR=BIT0+BIT6;       
+    P1OUT=BIT0+BIT6;   
+    
+    while(1)
+    {
+if((P1IN & BIT3) == 0)
+    {
+P1OUT^=(BIT0+BIT6);    
+    }  
+for(i=0;i<27000;i++);    
+    }
+}
+
 4. Escreva um código em C que pisca os LEDs ininterruptamente somente se o botão for pressionado.
 
+int main(void) 
+{
+    WDTCTL = WDTPW | WDTHOLD;	   
+     
+  P1DIR=BIT0+BIT6;         
+  P0OUT=BIT0+BIT6; 
+ 
+    while(1){
+    if((P1IN & BIT3) == 0){
+    	P1OUT = BIT6;			   
+    	__delay_cycles(2000000);	
+    	P1OUT = 0x00;			    
+    	__delay_cycles(1000000);	
+      P1OUT = BIT0;			    
+    	__delay_cycles(2000000);	
+    	P1OUT = 0x00;			   
+    	__delay_cycles(1000000);	
+    }
+    for(i=0;i<27000;i++);    
+    } 
+}
 5. Escreva um código em C que acende os LEDs quando o botão é pressionado. Deixe o MSP430 em modo de baixo consumo, e habilite a 
 interrupção do botão.
 
