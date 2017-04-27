@@ -4,8 +4,45 @@ Para todas as questões, utilize os LEDs e/ou os botões da placa Launchpad do M
 
 1. Escreva um código em C que pisca os LEDs ininterruptamente.
 
+#include "io430.h"
+int main( void )
+  {
+    int i;
+    
+    WDTCTL = WDTPW + WDTHOLD;
+    
+    P1DIR=BIT0+BIT6;         
+    P1OUT=BIT0+BIT6;       
+    
+    while(1)
+    {
+    P1OUT^=(BIT0+BIT6);    
+    for(i=0;i<9999;i++);    
+    }
+   
+  }
 2. Escreva um código em C que pisca os LEDs ininterruptamente. No ciclo que pisca os LEDs, o tempo que os LEDs ficam ligados deve ser duas
 vezes maior do que o tempo que eles ficam desligados.
+
+int main(void) 
+{
+    WDTCTL = WDTPW | WDTHOLD;	   
+     
+  P1DIR=BIT0+BIT6;         
+  P0OUT=BIT0+BIT6; 
+ 
+    while(1){
+    	P1OUT = BIT6;			   
+    	__delay_cycles(2000000);	
+    	P1OUT = 0x00;			    
+    	__delay_cycles(1000000);	
+      P1OUT = BIT0;			    
+    	__delay_cycles(2000000);	
+    	P1OUT = 0x00;			   
+    	__delay_cycles(1000000);	
+    }
+}
+ 
 
 3. Escreva um código em C que acende os LEDs quando o botão é pressionado.
 
