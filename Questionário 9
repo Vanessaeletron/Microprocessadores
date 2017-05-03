@@ -3,20 +3,20 @@
 int main( void )
 {
     WDTCTL = WDTPW | WDTHOLD; //para o Watch Dog
-    P1DIR = 0x02;             //configura o pino 1 como saída 0b 0000 0010  
-    P1OUT = 0x02;             // leva os pino 1 para VCC (Ligando os LEDs)
+    P1DIR = BIT1;                       //configura o pino 1 como saída 0b 0000 0010  
+    P1OUT = BIT1;                       // leva os pino 1 para VCC 
 
-int i;
+int i = 100;
 
- while(1)
-    {
-if((P1IN == 1)
-    {
- i = 100   
-    else{
-    i--;
+if (BIT1 == 0)
+ while(i != 0)
+if ( BIT1 = 0)   /// apertado 0
+{i--;}
+else
+i=100;
     }
 }
+
 
 2. Escreva um código em C que lê 9 botões multiplexados por 6 pinos, e pisca os LEDs da placa Launchpad de acordo com os botões. 
 Por exemplo, se o primeiro botão é pressionado, os LEDs piscam uma vez; se o segundo botão é pressionado, os LEDs piscam duas vezes;
