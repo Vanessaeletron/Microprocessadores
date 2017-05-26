@@ -1,0 +1,40 @@
+00B0 pra colocar somente B=0  como entrada
+1101 pra que não fique todos os bits 0 
+
+PXDIR: 0 entrada
+       1 saída
+       
+PXREN: 1 ativa o resistor -> PxOUT: 0 pull-down
+                          -> PXOUT: 1 pull-up
+                       
+#define BTN BIT3
+
+void COnfigura_Dado(void0
+{
+P1DIR &= ~ BTN;
+P1OUT |= BTN;    //pull-up
+P1REN |= BTN;    //
+TACCR0 = 5; //(6-10
+
+TACTL= TASSEl_2 +ID_0 + MC_1; //MC_1-> MC_1    -> contagem até o valor do TACCR0
+                                               -> SMCLK
+ }
+ int Retorna_Dado(void)
+ {
+ while (P1IN & BTN ~= 0); 
+ while (P1IN & BTN == 0);
+ return (TAR+1); contador +1
+ }
+ 
+
+&= and -> zera
+|= or -> seta
+
+1º Colocar 0 em x1, x2, x3 e ver onde a entreada é 0 em y1, y2, y3 e y4.
+2º fazer a varredura para saber a coluna que o botão foi pressionado
+x1 x2 x3
+0 1 1
+1 0 1 
+1 1 0
+
+Se quero acender D1 coloco p1.1 como 1 e P1.2 como 0. Para D4 não acender P1.0 é colocado como entrada.
