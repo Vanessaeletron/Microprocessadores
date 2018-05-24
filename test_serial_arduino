@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-
+from serial import serial
 import serial, time
 
 ser = serial.Serial("/dev/ttyUSB0", timeout=.1, baudrate = 9600)
